@@ -1,0 +1,24 @@
+<div id="search" class="relative">
+    <input id="header-searchbar" type="text" class="searchbar" placeholder="Rechercher un produit ou une boutique...">
+    <div id="dropdown">
+        <div class="scrolling">
+            <div id="search-product">
+                <h6 class="text-xl"><i class="fa-solid fa-cubes mr-2 my-auto"></i>Produits</h6>
+                {% for product in availableProducts %}
+                    <a class="trans" href="{{ path('app_product', { 'store_slug': product.store.slug, 'product_reference': product.reference }) }}">
+                        <div class="flex">
+                            <div class="w-16">
+                                {% if product.images is defined and product.images is not empty %}
+                                    <img src="/images/products/{{ product.store.slug }}/{{ product.category.slug }}/{{ product.images[0].file }}" alt="">
+                                {% else %}
+                                    <img src="/images/icons/image_no_available.png" alt="">
+                                {% endif %}
+                            </div>
+                            <p class="w-full truncate">{{ product.title }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
